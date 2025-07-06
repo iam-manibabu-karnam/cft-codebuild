@@ -1,0 +1,14 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.x
+  build:
+    commands:
+      - echo "Deploying VPC stack..."
+      - aws cloudformation deploy \
+          --template-file vpc.yaml \
+          --stack-name dev-vpc-stack \
+          --capabilities CAPABILITY_NAMED_IAM \
+          --parameter-overrides EnvironmentName=dev
